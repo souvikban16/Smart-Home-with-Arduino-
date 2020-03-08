@@ -1,0 +1,11 @@
+CLiauuOEEayLFBVrf4XXn3anaprU40qB
+
+
+GET STATUS:
+  http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/isHardwareConnected
+
+GET PIN STATUS:
+  http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/get/D2
+
+UPDATE PIN STATUS:
+  http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/update/D2?value=0
