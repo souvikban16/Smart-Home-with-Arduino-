@@ -1,111 +1,39 @@
-<<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Control my Arduino</title>
-  </head>
-  <body>
-    <h1 color='red'>Hi, I have created this website to send http requests to the blynk cloud server</h1>
-
-    <button type="button" onclick="ledon()">Turn LED on</button>
-    <button type="button" onclick="ledoff()">Turn LED off</button>
-    <button type="button" onclick="statuscheck()">Click to check connectivity status</button>
-    <button type="button" onclick="ledstatuscheck()">Click to check led status</button>
-
-
-    <div id="devicestatus">
-      <label>see status</label>
-    </div>
-
-    <div id="ledstatus">
-      <label >led status will be shown here<label>
-    </div>
-
-
-
-  </body>
+<html>
+	<head>Souvik Banerjee</head>
+	<body>
+		<h1 >Login to your Arduino</h1>
+		<div align="center" bgcolor="#000099">
+		<form  method="POST">
+			<span color="Red">Login</span><br/>
+			<input type="text"	name="name" id="name"/><br/>
+			<span color="Red">Password</span><br/>
+			<input type="password" name="password" id="password"/><br/>
+			<input type="submit"  name="Submit" onclick="return checklogin()"/>
+			
+		</form>
+		</div>
 </html>
 
-<script type="text/javascript">
-function ledon()
-{
+<script>
+function checklogin()
+	{
+		console.log("Checking");
+		var Name=document.getElementById("name").value;
+		var Password=document.getElementById("password").value;
+		if (Name=="red" && Password=="123")
+		{
+			alert("Login Succesfull");
+			//~ console.log("Success");
+			window.location="control.html";
+			return false;
 
-  var xhttp=new XMLHttpRequest();
-  xhttp.open('get','http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/update/D2?value=1',true);
-  xhttp.send();
-
-}
-function ledoff()
-{
-
-  var xhttp=new XMLHttpRequest();
-  xhttp.open('get','http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/update/D2?value=0',true);
-  xhttp.send();
-
-}
-
-function statuscheck()
-{
-  var xhr=new XMLHttpRequest();
-  xhr.onreadystatechange=function(){
-    if (xhr.readyState==4)
-    {
-      if(xhr.status==200)
-      {
-        console.log(xhr.responseText);
-        if (xhr.responseText=='false')
-        {
-          document.getElementById("devicestatus").innerHTML ="Arduino not connected!";
-        }
-        if(xhr.responseText=='true')
-        {
-          document.getElementById("devicestatus").innerHTML="Arduino connected!";
-        }
-
-      }
-      if(xhr.stats==404)
-      {
-        console.log('Not Found');
-
-      }
-    }
-  };
-
-  xhr.open('get','http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/isHardwareConnected',true);
-  xhr.send();
-}
-
-function ledstatuscheck()
-{
-  var xhr=new XMLHttpRequest();
-  xhr.onreadystatechange=function(){
-    if (xhr.readyState==4)
-    {
-      if(xhr.status==200)
-      {
-        console.log(xhr.responseText);
-        if (xhr.responseText=='["0"]')
-        {
-          document.getElementById("ledstatus").innerHTML ="LED OFF!";
-        }
-        if(xhr.responseText=='["1"]')
-        {
-          document.getElementById("ledstatus").innerHTML="LED ON!";
-        }
-
-      }
-      if(xhr.stats==404)
-      {
-        console.log('Not Found');
-
-      }
-    }
-  };
-
-  xhr.open('get','http://blynk-cloud.com/CLiauuOEEayLFBVrf4XXn3anaprU40qB/get/D2',true);
-  xhr.send();
-}
-
-
-
+		}
+		else{
+			alert("Wrong username or Password");
+			//~ window.location.href="www.google.com";
+			return false;
+			
+		}
+	}
+	
 </script>
